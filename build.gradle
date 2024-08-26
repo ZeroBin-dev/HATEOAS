@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.api'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // basic
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // hateoas
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // mariaDB
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
+
+    // undertow
+    implementation 'org.springframework.boot:spring-boot-starter-undertow'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+configurations {
+    configureEach {
+        // was tomcat 제외
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+}
