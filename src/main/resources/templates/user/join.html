@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{fragment/head.html::headFragment}"/>
+<body>
+<div class="signup-container">
+  <h2>회원가입</h2>
+  <form id="joinForm">
+    <input type="text" name="id" onkeyup="changeDup()" placeholder="아이디" required/>
+    <button type="button" onclick="checkDup()" >아이디 중복체크</button>
+    <input type="text" name="name" placeholder="이름" required/>
+    <input type="password" name="password" placeholder="비밀번호" required/>
+    <button type="button" onclick="join()">회원가입</button>
+  </form>
+</div>
+<script>
+  let isChecked = false;
+  const form = document.getElementById('joinForm');
+
+  function checkDup() {
+    getApi('/users/check/' + form.id.value, '', checkSuccess, onApiError);
+  }
+
+  function checkSuccess(data) {
+    console.log(data)
+    console.log(data.dup)
+    alert(data.msg);
+    isChecked = data.dup !== true;
+  }
+
+  function changeDup() {
+    isChecked = false;
+    console.log('changeDup()');
+  }
+
+  function join() {
+    if (!isChecked) {
+      alert('아이디 중복 체크 필요');
+      return;
+    }
+
+    const data = {
+      id: form.id.value,
+      name: form.name.value,
+      password: form.password.value
+    }
+
+    postApi('/users/join', data, onApiSuccess, onApiError);
+  }
+</script>
+</body>
+</html>

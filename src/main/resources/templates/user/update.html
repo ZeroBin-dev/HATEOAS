@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{fragment/head.html::headFragment}"/>
+<body>
+<div class="update-container">
+  <h2>회원정보 수정</h2>
+  <form id="updateForm">
+    <input type="text" name="name" placeholder="이름" required/>
+    <input type="password" name="password" placeholder="비밀번호" required/>
+    <button type="button" onclick="update()">수정하기</button>
+  </form>
+</div>
+<script th:inline="javascript">
+
+  function update(){
+    const form = document.getElementById('updateForm');
+    const data = {
+      name: form.name.value,
+      password: form.password.value
+    }
+
+    putApi('/users/mod/'+[[${id}]], data, onApiSuccess, onApiError);
+  }
+
+</script>
+</body>
+</html>

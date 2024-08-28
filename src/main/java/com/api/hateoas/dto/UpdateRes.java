@@ -5,7 +5,6 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-public class JoinRes extends BaseRes {
-  private boolean isJoin;
-  private String id;
+public class UpdateRes extends BaseRes {
+  private boolean isUpdate;
 }

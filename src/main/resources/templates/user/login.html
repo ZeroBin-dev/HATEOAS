@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{fragment/head.html :: headFragment}"/>
+<body>
+<div class="login-container">
+  <h2>로그인</h2>
+  <form id="loginForm">
+    <input type="text" name="id" placeholder="아이디" required/>
+    <input type="password" name="password" placeholder="비밀번호" required/>
+    <button type="button" onclick="login()">로그인</button>
+  </form>
+</div>
+<script>
+    function login(){
+      const form = document.getElementById('loginForm');
+      const data = {
+        id: form.id.value,
+        password: form.password.value
+      }
+
+      postApi('/users/login', data, onApiSuccess, onApiError);
+    }
+</script>
+</body>
+</html>

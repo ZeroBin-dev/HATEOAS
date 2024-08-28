@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{fragment/head.html::headFragment}" />
+<body>
+<div class="container">
+  <h1>헤이티오스 테스트</h1>
+  <h3 th:text="${id}"></h3>
+  <a th:href="@{/view/login}">로그인</a>
+  <a th:href="@{/view/join}">회원가입</a>
+  <th:block th:if="${id != ''}">
+    <a th:href="@{/view/update}">회원정보 수정</a>
+    <a th:href="@{/view/quit}">회원탈퇴</a>
+  </th:block>
+
+</div>
+</body>
+</html>

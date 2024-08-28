@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class JoinReq {
+public class UpdateReq {
   private String id;
   private String name;
   private String password;

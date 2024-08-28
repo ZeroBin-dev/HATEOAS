@@ -1,12 +1,11 @@
 package com.api.hateoas.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Getter
-@Setter
-@AllArgsConstructor
-public class LoginRes {
-  private String name;
+@SuperBuilder
+public class LoginRes extends BaseRes {
+  private boolean isLogin;
+  private String id;
 }

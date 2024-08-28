@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{fragment/head.html::headFragment}"/>
+<body>
+<div class="quit-container">
+  <h2>회원탈퇴</h2>
+  <form id="deleteForm">
+    <input type="password" name="password" placeholder="비밀번호" required />
+    <button type="button" onclick="quit()">탈퇴하기</button>
+  </form>
+</div>
+<script th:inline="javascript">
+
+  function quit(){
+    const form = document.getElementById('deleteForm');
+    const data = {
+      password: form.password.value
+    }
+
+    deleteApi('/users/mod/'+[[${id}]], data, onApiSuccess, onApiError);
+  }
+
+</script>
+</body>
+</html>
